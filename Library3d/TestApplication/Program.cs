@@ -1,0 +1,25 @@
+﻿using Library3d;
+using Library3d.Formats.ds3;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TestApplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            IReader3d reader = new Reader3ds();
+            IScene scene = null;
+            using (Stream s = new FileStream("3dObjects/cube.3ds", FileMode.Open))
+            {
+                reader.FillScene(s, scene);
+            }
+            Console.ReadLine();
+        }
+    }
+}
