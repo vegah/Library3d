@@ -1,11 +1,12 @@
-﻿using Library3d;
-using Library3d.Formats.ds3;
+﻿using Fantasista.Library3d;
+using Fantasista.Library3d.Formats.ds3;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Test.TestClasses;
 
 namespace TestApplication
 {
@@ -14,7 +15,7 @@ namespace TestApplication
         static void Main(string[] args)
         {
             IReader3d reader = new Reader3ds();
-            IScene scene = null;
+            IScene scene = new TestScene();
             using (Stream s = new FileStream("3dObjects/cube.3ds", FileMode.Open))
             {
                 reader.FillScene(s, scene);

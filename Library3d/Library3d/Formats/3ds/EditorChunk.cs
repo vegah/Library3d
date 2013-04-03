@@ -23,9 +23,9 @@ using System.Threading.Tasks;
 
 namespace Fantasista.Library3d.Formats.ds3
 {
-    class MainChunk : Chunk
+    class EditorChunk : Chunk
     {
-        public MainChunk(BinaryReader reader, Int32 size)
+        public EditorChunk(BinaryReader reader, Int32 size)
             : base(reader, size)
         {
 

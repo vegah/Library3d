@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library3d.Formats.ds3
+namespace Fantasista.Library3d.Formats.ds3
 {
     internal abstract class Chunk
     {
         protected BinaryReader reader;
         protected Int32 size;
-        private List<Chunk> childChunks;
+        protected List<Chunk> childChunks;
         protected Int64 startPos;
         public Chunk(BinaryReader reader, Int32 size)
         {
@@ -39,6 +39,21 @@ namespace Library3d.Formats.ds3
             childChunks.Add(chunk);
         }
 
+        public virtual void FillScene(IScene scene)
+        {
+            foreach (Chunk chunk in childChunks)
+                chunk.FillScene(scene);
+        }
+
+        public virtual void FillModel(IModel model)
+        {
+            if (model != null)
+            {
+                foreach (Chunk chunk in childChunks)
+                    chunk.FillModel(model);
+            }
+        }
+
         internal static Chunk CreateChunk(BinaryReader reader)
         {
             Int16 id = reader.ReadInt16();
@@ -49,6 +64,36 @@ namespace Library3d.Formats.ds3
                 case 0x4d4d:
                     {
                         chunk = new MainChunk(reader, chunksize);
+                        break;
+                    }
+                case 0x4000:
+                    {
+                        chunk = new ObjectChunk(reader, chunksize);
+                        break;
+                    }
+                case 0x4100:
+                    {
+                        chunk = new MeshChunk(reader, chunksize);
+                        break;
+                    }
+                case 0x4110:
+                    {
+                        chunk = new VerticesChunk(reader, chunksize);
+                        break;
+                    }
+                case 0x4120:
+                    {
+                        chunk = new IndexChunk(reader, chunksize);
+                        break;
+                    }
+                case 0x3d3d:
+                    {
+                        chunk = new EditorChunk(reader, chunksize);
+                        break;
+                    }
+                case 0x0002:
+                    {
+                        chunk = new Version3dsChunk(reader, chunksize);
                         break;
                     }
                 default:

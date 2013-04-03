@@ -23,16 +23,32 @@ using System.Threading.Tasks;
 
 namespace Fantasista.Library3d.Formats.ds3
 {
-    class MainChunk : Chunk
+    class ObjectChunk : Chunk
     {
-        public MainChunk(BinaryReader reader, Int32 size)
+        private String name;
+        public ObjectChunk(BinaryReader reader, Int32 size)
             : base(reader, size)
         {
 
         }
 
+        public override void FillScene(IScene scene)
+        {
+            base.FillScene(scene);
+            IModel model = scene.GetNewModel();
+            this.FillModel(model);
+        }
+
+
         protected override void Read()
         {
+            Byte nextCharacter;
+            StringBuilder nameBuilder = new StringBuilder();
+            while ((nextCharacter = reader.ReadByte()) != 0)
+            {
+                nameBuilder.Append((char)nextCharacter);
+            }
+            name = nameBuilder.ToString();
             while (this.reader.BaseStream.Position < (startPos + size))
             {
                 this.AddChild(Chunk.CreateChunk(this.reader));

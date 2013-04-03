@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Fantasista.Library3d.Formats.ds3
 {
-    internal class UnknownChunk : Chunk
+    internal class Version3dsChunk : Chunk
     {
-        internal UnknownChunk(BinaryReader reader, Int32 size)
+        private Int32 version;
+
+        public Version3dsChunk(BinaryReader reader, Int32 size)
             : base(reader, size)
         {
 
@@ -17,7 +19,7 @@ namespace Fantasista.Library3d.Formats.ds3
 
         protected override void Read()
         {
-            this.ReadBytes(size);
+            this.version = reader.ReadInt32();
         }
     }
 }

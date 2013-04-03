@@ -23,19 +23,39 @@ using System.Threading.Tasks;
 
 namespace Fantasista.Library3d.Formats.ds3
 {
-    class MainChunk : Chunk
+    class VerticesChunk : Chunk
     {
-        public MainChunk(BinaryReader reader, Int32 size)
+        private struct Vector
+        {
+            public float x, y, z;
+        }
+        
+        private Int16 verticeCount;
+        private List<Vector> vertices= new List<Vector>();
+
+        public VerticesChunk(BinaryReader reader, Int32 size)
             : base(reader, size)
         {
 
         }
 
+        public override void FillModel(IModel model)
+        {
+            base.FillModel(model);
+            foreach (Vector v in vertices)
+                model.AddVertex(v.x, v.y, v.z);
+        }
+
         protected override void Read()
         {
-            while (this.reader.BaseStream.Position < (startPos + size))
+            verticeCount = reader.ReadInt16();
+            for (Int32 i = 0; i < verticeCount; i++)
             {
-                this.AddChild(Chunk.CreateChunk(this.reader));
+                Vector v = new Vector();
+                v.x = reader.ReadSingle();
+                v.y = reader.ReadSingle();
+                v.z = reader.ReadSingle();
+                vertices.Add(v);
             }
         }
     }

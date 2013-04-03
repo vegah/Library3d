@@ -23,19 +23,33 @@ using System.Threading.Tasks;
 
 namespace Fantasista.Library3d.Formats.ds3
 {
-    class MainChunk : Chunk
+    class IndexChunk : Chunk
     {
-        public MainChunk(BinaryReader reader, Int32 size)
+        private Int16 numberOfIndexes;
+        private List<Int16> indexes;
+        public IndexChunk(BinaryReader reader, Int32 size)
             : base(reader, size)
         {
+            indexes = new List<Int16>();
+        }
 
+        public override void FillModel(IModel model)
+        {
+            base.FillModel(model);
+            foreach (Int16 idx in indexes)
+                model.AddIndex(idx);
         }
 
         protected override void Read()
         {
-            while (this.reader.BaseStream.Position < (startPos + size))
+            numberOfIndexes = reader.ReadInt16();
+            for (Int32 i = 0; i < numberOfIndexes; i++)
             {
-                this.AddChild(Chunk.CreateChunk(this.reader));
+                indexes.Add(reader.ReadInt16());
+                indexes.Add(reader.ReadInt16());
+                indexes.Add(reader.ReadInt16());
+                // Skip the last part for now
+                reader.ReadInt16();
             }
         }
     }

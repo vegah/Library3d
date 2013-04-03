@@ -19,11 +19,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Library3d
+namespace Fantasista.Library3d
 {
     public interface IModel
     {
-        void AddVertex(float x, float y, float z, float normalx, float normaly, float normalz, float texturex, float texturey);
+        void AddVertex(float x, float y, float z);
+        void AddNormal(float normalx, float normaly, float normalz);
+        void Add2dTexture(float texturex, float texturey);
         void AddIndex(Int32 index);
         void SetName(String name);
 

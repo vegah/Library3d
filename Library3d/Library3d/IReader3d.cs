@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library3d
+namespace Fantasista.Library3d
 {
     public interface IReader3d
     {

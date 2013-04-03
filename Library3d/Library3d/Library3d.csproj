@@ -7,10 +7,11 @@
     <ProjectGuid>{6A26E76C-6A8D-4855-B950-3DBB650C98A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Library3d</RootNamespace>
+    <RootNamespace>Fantasista.Library3d</RootNamespace>
     <AssemblyName>Library3d</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,9 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Formats\3ds\Chunk.cs" />
+    <Compile Include="Formats\3ds\Exception\MissingChunkException.cs" />
+    <Compile Include="Formats\3ds\IndexChunk.cs" />
+    <Compile Include="Formats\3ds\VerticesChunk.cs" />
+    <Compile Include="Formats\3ds\MeshChunk.cs" />
+    <Compile Include="Formats\3ds\ObjectChunk.cs" />
+    <Compile Include="Formats\3ds\EditorChunk.cs" />
     <Compile Include="Formats\3ds\MainChunk.cs" />
     <Compile Include="Formats\3ds\Reader3ds.cs" />
     <Compile Include="Formats\3ds\UnknownChunk.cs" />
+    <Compile Include="Formats\3ds\Version3dsChunk.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IReader3d.cs" />
     <Compile Include="IScene.cs" />

@@ -23,9 +23,10 @@ using System.Threading.Tasks;
 
 namespace Fantasista.Library3d.Formats.ds3
 {
-    class MainChunk : Chunk
+    class MeshChunk : Chunk
     {
-        public MainChunk(BinaryReader reader, Int32 size)
+        private String name;
+        public MeshChunk(BinaryReader reader, Int32 size)
             : base(reader, size)
         {
 

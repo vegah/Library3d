@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Library3d
+namespace Fantasista.Library3d
 {
     public interface IScene
     {
