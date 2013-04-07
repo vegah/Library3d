@@ -1,8 +1,8 @@
 3dReader
 ========
 
-Read different 3d formats to an IModel/IScene.
-For now it just supports 3ds.  
+Read different 3d formats to an IModel/IScene in .net.
+For now it just supports 3ds (3d studio).  
 
 Usage is
 ```csharp
@@ -22,8 +22,8 @@ IModel have 5 methods:
         void AddIndex(Int32 index);
         void SetName(String name);
 ```        
-They should explain themselves.
+Please see the provided examples (TestApplication and WindowsMonoGameTest).
 
 The added monogame example is not meant to be an example on how to really do it in monogame.  There is for example no checking if UV coords is actually defined etc, it's just a really basic example.
 
-This is nowhere near finished, and I am not sure if it ever will be.  
+This is of course not finished, and it probably never will be.    
