@@ -86,6 +86,11 @@ namespace Fantasista.Library3d.Formats.ds3
                         chunk = new IndexChunk(reader, chunksize);
                         break;
                     }
+                case 0x4140:
+                    {
+                        chunk = new UVChunk(reader, chunksize);
+                        break;
+                    }
                 case 0x3d3d:
                     {
                         chunk = new EditorChunk(reader, chunksize);

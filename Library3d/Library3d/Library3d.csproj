@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Formats\3ds\Chunk.cs" />
+    <Compile Include="Formats\3ds\UVChunk.cs" />
     <Compile Include="Formats\3ds\Exception\MissingChunkException.cs" />
     <Compile Include="Formats\3ds\IndexChunk.cs" />
     <Compile Include="Formats\3ds\VerticesChunk.cs" />

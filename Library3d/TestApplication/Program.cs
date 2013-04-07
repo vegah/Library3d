@@ -20,6 +20,13 @@ namespace TestApplication
             {
                 reader.FillScene(s, scene);
             }
+
+            IScene scene2 = new TestScene();
+            using (Stream s = new FileStream("3dObjects/donutcube.3ds", FileMode.Open))
+            {
+                reader.FillScene(s, scene2);
+            }
+
             Console.ReadLine();
         }
     }

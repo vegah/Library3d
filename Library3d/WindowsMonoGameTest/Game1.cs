@@ -54,7 +54,7 @@ namespace WindowsMonoGameTest
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             IReader3d reader = new Reader3ds();
-            using (Stream s = new FileStream("3dObjects/cube.3ds", FileMode.Open))
+            using (Stream s = new FileStream("3dObjects/spherecube.3ds", FileMode.Open))
             {
                 reader.FillScene(s,scene);
             }
@@ -82,7 +82,7 @@ namespace WindowsMonoGameTest
                 Exit();
 
             // TODO: Add your update logic here
-
+            scene.Update();
             base.Update(gameTime);
         }
 
@@ -93,6 +93,7 @@ namespace WindowsMonoGameTest
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.RasterizerState = new RasterizerState() { CullMode = CullMode.CullClockwiseFace };
             scene.Draw();
             base.Draw(gameTime);
         }

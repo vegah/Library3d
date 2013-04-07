@@ -28,6 +28,12 @@ namespace WindowsMonoGameTest.Scene
             projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 1, 200);
         }
 
+        public void Update()
+        {
+            foreach (GameModel model in models)
+                model.Rotate();
+        }
+
         public void Draw()
         {
             foreach (GameModel model in models)

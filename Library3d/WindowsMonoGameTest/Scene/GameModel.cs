@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -22,7 +23,7 @@ namespace WindowsMonoGameTest.Scene
         private int vertexCount;
         private int indexCount;
         private List<VertexPositionNormalTexture> mapvertex;
-
+        private Texture2D texture;
 
         public GameModel(Game g, Matrix viewMatrix, Matrix projectionMatrix)
             : base(g)
@@ -37,19 +38,26 @@ namespace WindowsMonoGameTest.Scene
 
         private void Setup(Matrix viewMatrix, Matrix projectionMatrix)
         {
+            using (Stream s = new FileStream("Textures/cloud1.png", FileMode.Open))
+            {
+                texture = Texture2D.FromStream(GraphicsDevice, s);
+            }
             worldMatrix = Matrix.Identity;
             effect = new BasicEffect(GraphicsDevice);
             effect.World = worldMatrix;
             effect.View = viewMatrix;
             effect.Projection = projectionMatrix;
             effect.TextureEnabled = true;
+            effect.Texture = texture;
+            
         }
 
         public void SetupBuffers()
         {
-            foreach (Vector3 ver in vertices)
+            // No checking if uvcoordinates at all is defined etc.
+            for (Int32 i = 0; i < vertices.Count;i++ )
             {
-                mapvertex.Add(new VertexPositionNormalTexture() { Position = ver });
+                mapvertex.Add(new VertexPositionNormalTexture() { Position = vertices[i], TextureCoordinate=uvCoords[i] });
             }
             vertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionNormalTexture.VertexDeclaration, mapvertex.Count, BufferUsage.WriteOnly);
             vertexBuffer.SetData<VertexPositionNormalTexture>(mapvertex.ToArray());
@@ -65,6 +73,8 @@ namespace WindowsMonoGameTest.Scene
                 SetupBuffers();
             GraphicsDevice.SetVertexBuffer(vertexBuffer);
             GraphicsDevice.Indices = indexBuffer;
+            effect.World = worldMatrix;
+
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
@@ -72,6 +82,12 @@ namespace WindowsMonoGameTest.Scene
                     vertexCount, 0, indexCount / 3);
             }
 
+        }
+
+        public void Rotate()
+        {
+            worldMatrix *= Matrix.CreateRotationZ(0.05f);
+            worldMatrix *= Matrix.CreateRotationY(0.05f);
         }
 
         public void AddVertex(float x, float y, float z)
