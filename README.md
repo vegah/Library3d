@@ -27,3 +27,4 @@ Please see the provided examples (TestApplication and WindowsMonoGameTest).
 The added monogame example is not meant to be an example on how to really do it in monogame.  There is for example no checking if UV coords is actually defined etc, it's just a really basic example.
 
 This is of course not finished, and it probably never will be.    
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/ddcb04385d8179378666c744b974112c "githalytics.com")](http://githalytics.com/vegah/3dReader)
