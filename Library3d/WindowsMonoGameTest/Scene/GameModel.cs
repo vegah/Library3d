@@ -40,10 +40,10 @@ namespace WindowsMonoGameTest.Scene
         {
             using (Stream s = new FileStream("Textures/cloud1.png", FileMode.Open))
             {
-                texture = Texture2D.FromStream(GraphicsDevice, s);
+                texture = Texture2D.FromStream(Game.GraphicsDevice, s);
             }
             worldMatrix = Matrix.Identity;
-            effect = new BasicEffect(GraphicsDevice);
+            effect = new BasicEffect(Game.GraphicsDevice);
             effect.World = worldMatrix;
             effect.View = viewMatrix;
             effect.Projection = projectionMatrix;
@@ -59,9 +59,9 @@ namespace WindowsMonoGameTest.Scene
             {
                 mapvertex.Add(new VertexPositionNormalTexture() { Position = vertices[i], TextureCoordinate=uvCoords[i] });
             }
-            vertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionNormalTexture.VertexDeclaration, mapvertex.Count, BufferUsage.WriteOnly);
+            vertexBuffer = new VertexBuffer(Game.GraphicsDevice, VertexPositionNormalTexture.VertexDeclaration, mapvertex.Count, BufferUsage.WriteOnly);
             vertexBuffer.SetData<VertexPositionNormalTexture>(mapvertex.ToArray());
-            indexBuffer = new IndexBuffer(GraphicsDevice, IndexElementSize.ThirtyTwoBits, indexes.Count, BufferUsage.WriteOnly);
+            indexBuffer = new IndexBuffer(Game.GraphicsDevice, IndexElementSize.ThirtyTwoBits, indexes.Count, BufferUsage.WriteOnly);
             indexBuffer.SetData<UInt32>(indexes.ToArray());
             vertexCount = mapvertex.Count;
             indexCount = indexes.Count;
@@ -71,14 +71,14 @@ namespace WindowsMonoGameTest.Scene
         {
             if (vertexBuffer == null)
                 SetupBuffers();
-            GraphicsDevice.SetVertexBuffer(vertexBuffer);
-            GraphicsDevice.Indices = indexBuffer;
+            Game.GraphicsDevice.SetVertexBuffer(vertexBuffer);
+            Game.GraphicsDevice.Indices = indexBuffer;
             effect.World = worldMatrix;
 
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0,
+                Game.GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0,
                     vertexCount, 0, indexCount / 3);
             }
 

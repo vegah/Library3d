@@ -5,8 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.GamerServices;
+
 using WindowsMonoGameTest.Scene;
 using Fantasista.Library3d;
 using Fantasista.Library3d.Formats.ds3;
@@ -28,7 +27,6 @@ namespace WindowsMonoGameTest
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
-            scene = new GameScene(this);
             Content.RootDirectory = "Content";
         }
 
@@ -53,6 +51,7 @@ namespace WindowsMonoGameTest
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            scene = new GameScene(this);
             IReader3d reader = new Reader3ds();
             using (Stream s = new FileStream("3dObjects/spherecube.3ds", FileMode.Open))
             {
