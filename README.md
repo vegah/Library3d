@@ -4,9 +4,11 @@
 Read different 3d formats to an IModel/IScene in .net.
 For now it just supports 3ds (3d studio).  
 
-#Support formats
+#Supported formats
 3ds - Can read 3ds files into IScene/IModel
+
 md2 - Can read md2 files, but normals are not in (they are kept in a lookup table which I havent included.  Should be easy to add)
+
 
 
 #Usage is
