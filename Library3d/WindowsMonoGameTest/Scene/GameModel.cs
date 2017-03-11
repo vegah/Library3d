@@ -88,6 +88,7 @@ namespace WindowsMonoGameTest.Scene
         {
             worldMatrix *= Matrix.CreateRotationZ(0.05f);
             worldMatrix *= Matrix.CreateRotationY(0.05f);
+            
         }
 
         public void AddVertex(float x, float y, float z)
