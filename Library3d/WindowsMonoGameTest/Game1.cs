@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Input;
 using WindowsMonoGameTest.Scene;
 using Fantasista.Library3d;
 using Fantasista.Library3d.Formats.ds3;
+using Fantasista.Library3d.Formats.md2;
+
 using System.IO;
 #endregion
 
@@ -52,8 +54,10 @@ namespace WindowsMonoGameTest
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new GameScene(this);
-            IReader3d reader = new Reader3ds();
-            using (Stream s = new FileStream("3dObjects/spherecube.3ds", FileMode.Open))
+            //IReader3d reader = new Reader3ds();
+            //using (Stream s = new FileStream("3dObjects/spherecube.3ds", FileMode.Open))
+            var reader = new Md2Reader();
+            using (var s = new FileStream("c:/div/test.md2", FileMode.Open))
             {
                 reader.FillScene(s,scene);
             }

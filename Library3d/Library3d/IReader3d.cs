@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace Fantasista.Library3d
 {
-    public interface IReader3d
+    public interface IReader3d 
     {
         /// <summary>
         /// Takes a scene and fills it with 3d models

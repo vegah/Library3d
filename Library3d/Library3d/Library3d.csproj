@@ -52,6 +52,16 @@
     <Compile Include="Formats\3ds\Reader3ds.cs" />
     <Compile Include="Formats\3ds\UnknownChunk.cs" />
     <Compile Include="Formats\3ds\Version3dsChunk.cs" />
+    <Compile Include="Formats\md2\Exceptions\Md2WrongHeaderException.cs" />
+    <Compile Include="Formats\md2\IMd2Part.cs" />
+    <Compile Include="Formats\md2\Md2Frame.cs" />
+    <Compile Include="Formats\md2\Md2Header.cs" />
+    <Compile Include="Formats\md2\Md2Reader.cs" />
+    <Compile Include="Formats\md2\Md2Skin.cs" />
+    <Compile Include="Formats\md2\Md2TextureCoords.cs" />
+    <Compile Include="Formats\md2\Md2Triangle.cs" />
+    <Compile Include="Formats\md2\Md2Vector.cs" />
+    <Compile Include="Formats\md2\Md2Vertex.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IReader3d.cs" />
     <Compile Include="IScene.cs" />
