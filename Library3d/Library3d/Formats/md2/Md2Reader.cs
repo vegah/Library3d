@@ -25,6 +25,26 @@ namespace Fantasista.Library3d.Formats.md2
 
         public void FillScene(Stream stream, IScene scene)
         {
+            ReadMd2File(stream);
+            var model = scene.GetNewModel();
+            foreach (var vertex in frames[0].Vertices)
+                model.AddVertex((vertex.X*frames[0].Scale.X)+frames[0].Translate.X,
+                    (vertex.Y * frames[0].Scale.Y) + frames[0].Translate.Y,
+                    (vertex.Z * frames[0].Scale.Z) + frames[0].Translate.Z);
+            foreach (var uv in textureCoords)
+                model.Add2dTexture(uv.u, uv.v);
+            foreach (var triangles in triangles)
+            {
+                model.AddIndex(triangles.VertexIndexes[0]);
+                model.AddIndex(triangles.VertexIndexes[1]);
+                model.AddIndex(triangles.VertexIndexes[2]);
+            }
+        }
+
+
+
+        private void ReadMd2File(Stream stream)
+        {
             var reader = new BinaryReader(stream);
             var header = new Md2Header(reader);
             header.ReadHeader();
