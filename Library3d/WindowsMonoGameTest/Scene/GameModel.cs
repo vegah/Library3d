@@ -38,7 +38,7 @@ namespace WindowsMonoGameTest.Scene
 
         private void Setup(Matrix viewMatrix, Matrix projectionMatrix)
         {
-            using (Stream s = new FileStream("Textures/cloud1.png", FileMode.Open))
+            using (Stream s = new FileStream(@"C:\div\models\md2\modelpack1\Model1\auvBG.png", FileMode.Open))
             {
                 texture = Texture2D.FromStream(Game.GraphicsDevice, s);
             }
@@ -49,7 +49,11 @@ namespace WindowsMonoGameTest.Scene
             effect.Projection = projectionMatrix;
             effect.TextureEnabled = true;
             effect.Texture = texture;
-            
+            effect.LightingEnabled = true;
+            effect.DirectionalLight0.DiffuseColor = new Vector3(1f, 1f, 1f); // a red light
+            effect.DirectionalLight0.Direction = new Vector3(0, 0, 1);  // coming along the x-axis
+            effect.DirectionalLight0.SpecularColor = new Vector3(0, 1, 0); // with green highlights
+
         }
 
         public void SetupBuffers()
@@ -57,7 +61,7 @@ namespace WindowsMonoGameTest.Scene
             // No checking if uvcoordinates at all is defined etc.
             for (Int32 i = 0; i < vertices.Count;i++ )
             {
-                mapvertex.Add(new VertexPositionNormalTexture() { Position = vertices[i], TextureCoordinate=uvCoords[i] });
+                mapvertex.Add(new VertexPositionNormalTexture() { Position = vertices[i], TextureCoordinate=uvCoords[i], Normal=normals[i] });
             }
             vertexBuffer = new VertexBuffer(Game.GraphicsDevice, VertexPositionNormalTexture.VertexDeclaration, mapvertex.Count, BufferUsage.WriteOnly);
             vertexBuffer.SetData<VertexPositionNormalTexture>(mapvertex.ToArray());

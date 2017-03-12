@@ -29,9 +29,14 @@ namespace Fantasista.Library3d.Formats.md2
             ReadMd2File(stream);
             var model = scene.GetNewModel();
             foreach (var vertex in frames[0].Vertices)
-                model.AddVertex((vertex.X*frames[0].Scale.X)+frames[0].Translate.X,
+            {
+                model.AddVertex((vertex.X * frames[0].Scale.X) + frames[0].Translate.X,
                     (vertex.Y * frames[0].Scale.Y) + frames[0].Translate.Y,
                     (vertex.Z * frames[0].Scale.Z) + frames[0].Translate.Z);
+                model.AddNormal(Md2PrecalculatedNormals.normals[vertex.NormalIndex].X,
+                    Md2PrecalculatedNormals.normals[vertex.NormalIndex].Y,
+                   Md2PrecalculatedNormals.normals[vertex.NormalIndex].Z);
+            }
             var correctedTextureCoords = new Md2TextureCoords[frames[0].Vertices.Count];
             foreach (var triangles in triangles)
             {

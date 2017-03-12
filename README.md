@@ -7,8 +7,7 @@ Made because I needed these files to some other stuff, so not necessarily made f
 #Supported formats
 3ds - Can read 3ds files into IScene/IModel
 
-md2 - Can read ID Software's md2 files, but normals are not in (they are kept in a lookup table which I havent included.  Should be easy to add).  Will for now just get information about the first frame, but all frames are read - so should also be easy to fix.  Just need to add some frameinformation to the IModel interface.
-
+md2 - Can read ID Software's md2 files. Will for now just get information about the first frame, but all frames are read - so should also be easy to fix.  Just need to add some frameinformation to the IModel interface.
 
 
 #Usage is

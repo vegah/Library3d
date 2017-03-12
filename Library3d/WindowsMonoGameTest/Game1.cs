@@ -57,8 +57,8 @@ namespace WindowsMonoGameTest
             //IReader3d reader = new Reader3ds();
             //using (Stream s = new FileStream("3dObjects/spherecube.3ds", FileMode.Open))
             var reader = new Md2Reader();
-            using (var s = new FileStream(@"C:\div\models\md2\modelpack1\Model1\pilaar.md2", FileMode.Open))
-            //using (var s = new FileStream(@"C:\div\sphere.md2", FileMode.Open))
+            //using (var s = new FileStream(@"C:\div\models\md2\modelpack1\Model1\pilaar.md2", FileMode.Open))
+            using (var s = new FileStream(@"C:\div\sphere.md2", FileMode.Open))
             {
                 reader.FillScene(s, scene);
             }
@@ -97,7 +97,7 @@ namespace WindowsMonoGameTest
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            GraphicsDevice.RasterizerState = new RasterizerState() { CullMode = CullMode.CullClockwiseFace};
+            GraphicsDevice.RasterizerState = new RasterizerState() { CullMode = CullMode.CullCounterClockwiseFace};
             scene.Draw();
             base.Draw(gameTime);
         }

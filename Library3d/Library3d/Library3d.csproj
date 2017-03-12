@@ -56,6 +56,7 @@
     <Compile Include="Formats\md2\IMd2Part.cs" />
     <Compile Include="Formats\md2\Md2Frame.cs" />
     <Compile Include="Formats\md2\Md2Header.cs" />
+    <Compile Include="Formats\md2\Md2PrecalculatedNormals.cs" />
     <Compile Include="Formats\md2\Md2Reader.cs" />
     <Compile Include="Formats\md2\Md2Skin.cs" />
     <Compile Include="Formats\md2\Md2TextureCoords.cs" />
@@ -66,6 +67,9 @@
     <Compile Include="IReader3d.cs" />
     <Compile Include="IScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Formats\lwob\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
